@@ -1,9 +1,9 @@
 <?php
   class Task {
-    private $id;
-    private $id_status;
-    private $task;
-    private $date_registration;
+    public $id;
+    public $id_status;
+    public $task;
+    public $date_registration;
 
     public function __get($attribute) {
       return $this->$attribute;
