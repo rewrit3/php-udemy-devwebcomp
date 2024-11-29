@@ -3,10 +3,6 @@
   require('../app_task_list_private/task.service.php');
   require('../app_task_list_private/connection.php');
 
-  // echo '<pre>';
-  // print_r($_POST);
-  // echo '</pre>';
-
   $task = new Task();
   $task->__set('task', $_POST['task']);
 
@@ -15,7 +11,5 @@
   $taskService = new TaskService($connection, $task);
   $taskService->create();
 
-  // echo '<pre>';
-  // print_r($taskService);
-  // echo '</pre>';
+  header('Location: task_new.php?included=1');
 ?>

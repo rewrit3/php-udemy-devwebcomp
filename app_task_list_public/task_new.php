@@ -19,6 +19,12 @@
 			</div>
 		</nav>
 
+		<?php if (isset($_GET['included']) && $_GET['included'] == 1): ?>
+			<div class="d-flex justify-content-center bg-success text-white pt-2">
+				<h5>Tarefa inserida com sucesso!</h5>
+			</div>
+		<?php endif; ?>
+
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
