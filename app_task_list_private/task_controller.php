@@ -16,6 +16,10 @@
 
     header('Location: task_new.php?included=1');
   elseif ($action == 'recover'):
-    echo 'AQUI';
+    $task = new Task();
+    $connection = new Connection();
+
+    $taskService = new TaskService($connection, $task);
+    $tasks = $taskService->read();
   endif;
 ?>
