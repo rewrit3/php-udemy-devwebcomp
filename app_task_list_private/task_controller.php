@@ -3,13 +3,19 @@
   require('../app_task_list_private/task.service.php');
   require('../app_task_list_private/connection.php');
 
-  $task = new Task();
-  $task->__set('task', $_POST['task']);
+  $action = isset($_GET['action']) ? $_GET['action'] : $action;
 
-  $connection = new Connection();
+  if ($action == 'insert'):
+    $task = new Task();
+    $task->__set('task', $_POST['task']);
 
-  $taskService = new TaskService($connection, $task);
-  $taskService->create();
+    $connection = new Connection();
 
-  header('Location: task_new.php?included=1');
+    $taskService = new TaskService($connection, $task);
+    $taskService->create();
+
+    header('Location: task_new.php?included=1');
+  elseif ($action == 'recover'):
+    echo 'AQUI';
+  endif;
 ?>
