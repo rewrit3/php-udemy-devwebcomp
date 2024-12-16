@@ -1,33 +1,40 @@
 <?php
-  class TaskService {
-    public $connection;
-    public $task;
+class TaskService
+{
+  public $connection;
+  public $task;
 
-    public function __construct(Connection $connection, Task $task) {
-      $this->connection = $connection->connect();
-      $this->task = $task;
-    }
+  public function __construct(Connection $connection, Task $task)
+  {
+    $this->connection = $connection->connect();
+    $this->task = $task;
+  }
 
-    public function create() {
-      $query = 'INSERT INTO tasks (task) VALUES (:task)';
+  public function create()
+  {
+    $query = 'INSERT INTO tasks (task) VALUES (:task)';
 
-      $stmt = $this->connection->prepare($query);
-      $stmt->bindValue(':task', $this->task->__get('task'));
-      $stmt->execute();
-    }
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindValue(':task', $this->task->__get('task'));
+    $stmt->execute();
+  }
 
-    public function read() {
-      $query = 'SELECT t.id, t.task, s.status
+  public function read()
+  {
+    $query = 'SELECT t.id, t.task, s.status
                 FROM tasks AS t
                 LEFT JOIN status AS s ON (t.id_status = s.id)';
 
-      $stmt = $this->connection->prepare($query);
-      $stmt->execute();
+    $stmt = $this->connection->prepare($query);
+    $stmt->execute();
 
-      return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function update() {}
-    public function delete() {}
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
-?>
+
+  public function update()
+  {
+    print_r($this->task);
+  }
+
+  public function delete() {}
+}

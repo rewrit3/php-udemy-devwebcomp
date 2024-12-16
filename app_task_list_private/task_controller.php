@@ -1,25 +1,35 @@
-<?php 
-  require('../app_task_list_private/task.model.php');
-  require('../app_task_list_private/task.service.php');
-  require('../app_task_list_private/connection.php');
+<?php
+require('../app_task_list_private/task.model.php');
+require('../app_task_list_private/task.service.php');
+require('../app_task_list_private/connection.php');
 
-  $action = isset($_GET['action']) ? $_GET['action'] : $action;
+$action = isset($_GET['action']) ? $_GET['action'] : $action;
 
-  if ($action == 'insert'):
-    $task = new Task();
-    $task->__set('task', $_POST['task']);
+if ($action == 'insert'):
+  $task = new Task();
+  $task->__set('task', $_POST['task']);
 
-    $connection = new Connection();
+  $connection = new Connection();
+  $taskService = new TaskService($connection, $task);
 
-    $taskService = new TaskService($connection, $task);
-    $taskService->create();
+  $taskService->create();
 
-    header('Location: task_new.php?included=1');
-  elseif ($action == 'recover'):
-    $task = new Task();
-    $connection = new Connection();
+  header('Location: task_new.php?included=1');
+elseif ($action == 'recover'):
+  $connection = new Connection();
 
-    $taskService = new TaskService($connection, $task);
-    $tasks = $taskService->read();
-  endif;
-?>
+  $task = new Task();
+  $taskService = new TaskService($connection, $task);
+
+  $tasks = $taskService->read();
+elseif ($action == 'update'):
+  $task = new Task();
+
+  $task->__set('id', $_POST['id']);
+  $task->__set('task', $_POST['task']);
+
+  $connection = new Connection();
+
+  $taskService = new TaskService($connection, $task);
+  $taskService->update();
+endif;
