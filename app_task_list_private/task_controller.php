@@ -31,5 +31,8 @@ elseif ($action == 'update'):
   $connection = new Connection();
 
   $taskService = new TaskService($connection, $task);
-  $taskService->update();
+
+  if ($taskService->update()):
+    header('location: task_list.php');
+  endif;
 endif;
