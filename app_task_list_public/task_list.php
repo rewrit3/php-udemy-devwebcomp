@@ -2,10 +2,6 @@
 $action = 'recover';
 
 require 'task_controller.php';
-
-// echo '<pre>';
-// print_r($tasks);
-// echo '</pre>';
 ?>
 
 <html>
@@ -50,6 +46,10 @@ require 'task_controller.php';
       task.innerHTML = '';
       task.insertBefore(form, task[0]);
     }
+
+    function remove(id) {
+      location.href = 'task_list.php?action=remove&id=' + id;
+    }
   </script>
 </head>
 
@@ -88,11 +88,14 @@ require 'task_controller.php';
                   </div>
 
                   <div class="col-sm-3 mt-2 d-flex justify-content-between">
-                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                    <i class="fas fa-trash-alt fa-lg text-danger"
+                      onclick="remove(<?= $task->id ?>)">
+                    </i>
                     <i class="fas fa-edit fa-lg text-info"
                       onclick="edit(<?= $task->id ?>, '<?= $task->task ?>')">
                     </i>
-                    <i class="fas fa-check-square fa-lg text-success"></i>
+                    <i class="fas fa-check-square fa-lg text-success">
+                    </i>
                   </div>
                 </div>
               <? endforeach; ?>

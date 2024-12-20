@@ -44,5 +44,13 @@ class TaskService
     return $stmt->execute();
   }
 
-  public function delete() {}
+  public function remove()
+  {
+    $query = 'DELETE FROM tasks 
+                    WHERE id = :id';
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindValue(':id', $this->task->__get('id'));
+    $stmt->execute();
+  }
 }

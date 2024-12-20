@@ -5,6 +5,7 @@ require('../app_task_list_private/connection.php');
 
 $action = isset($_GET['action']) ? $_GET['action'] : $action;
 
+// insert
 if ($action == 'insert'):
   $task = new Task();
   $task->__set('task', $_POST['task']);
@@ -15,6 +16,7 @@ if ($action == 'insert'):
   $taskService->create();
 
   header('Location: task_new.php?included=1');
+// recover
 elseif ($action == 'recover'):
   $connection = new Connection();
 
@@ -22,6 +24,7 @@ elseif ($action == 'recover'):
   $taskService = new TaskService($connection, $task);
 
   $tasks = $taskService->read();
+// update
 elseif ($action == 'update'):
   $task = new Task();
 
@@ -35,4 +38,15 @@ elseif ($action == 'update'):
   if ($taskService->update()):
     header('location: task_list.php');
   endif;
+// remove
+elseif ($action == 'remove'):
+  $task = new Task();
+  $task->__set('id', $_GET['id']);
+
+  $connection = new Connection();
+
+  $taskService = new TaskService($connection, $task);
+  $taskService->remove();
+
+  header('location: task_list.php');
 endif;
