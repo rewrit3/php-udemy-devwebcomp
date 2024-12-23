@@ -2,7 +2,7 @@
 class Connection
 {
   private $host = '127.0.0.1';
-  private $dbname = 'php_pdo_app';
+  private $dbname = 'udemy_php_pdo_app';
   private $user = 'root';
   private $pass = '';
 
