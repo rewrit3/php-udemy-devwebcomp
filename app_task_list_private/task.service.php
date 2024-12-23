@@ -53,4 +53,17 @@ class TaskService
     $stmt->bindValue(':id', $this->task->__get('id'));
     $stmt->execute();
   }
+
+  public function done()
+  {
+    $query = ' UPDATE tasks
+                  SET id_status = ? 
+                WHERE id = ?';
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindValue(1, $this->task->__get('id_status'));
+    $stmt->bindValue(2, $this->task->__get('id'));
+
+    return $stmt->execute();
+  }
 }

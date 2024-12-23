@@ -49,4 +49,16 @@ elseif ($action == 'remove'):
   $taskService->remove();
 
   header('location: task_list.php');
+// done
+elseif ($action == 'done'):
+  $task = new Task();
+  $task->__set('id', $_GET['id']);
+  $task->__set('id_status', 2);
+
+  $connection = new Connection();
+
+  $taskService = new TaskService($connection, $task);
+  $taskService->done();
+
+  header('location: task_list.php');
 endif;

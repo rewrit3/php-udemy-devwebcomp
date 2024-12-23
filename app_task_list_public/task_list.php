@@ -50,6 +50,10 @@ require 'task_controller.php';
     function remove(id) {
       location.href = 'task_list.php?action=remove&id=' + id;
     }
+
+    function done(id) {
+      location.href = 'task_list.php?action=done&id=' + id;
+    }
   </script>
 </head>
 
@@ -91,11 +95,15 @@ require 'task_controller.php';
                     <i class="fas fa-trash-alt fa-lg text-danger"
                       onclick="remove(<?= $task->id ?>)">
                     </i>
-                    <i class="fas fa-edit fa-lg text-info"
-                      onclick="edit(<?= $task->id ?>, '<?= $task->task ?>')">
-                    </i>
-                    <i class="fas fa-check-square fa-lg text-success">
-                    </i>
+
+                    <? if ($task->status == 'pendente'): ?>
+                      <i class="fas fa-edit fa-lg text-info"
+                        onclick="edit(<?= $task->id ?>, '<?= $task->task ?>')">
+                      </i>
+                      <i class="fas fa-check-square fa-lg text-success"
+                        onclick="done(<?= $task->id ?>)">
+                      </i>
+                    <? endif; ?>
                   </div>
                 </div>
               <? endforeach; ?>
