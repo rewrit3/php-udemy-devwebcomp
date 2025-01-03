@@ -31,6 +31,20 @@ class TaskService
     return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
 
+  public function readPendingTasks()
+  {
+    $query = 'SELECT t.id, t.task, s.status
+                FROM tasks AS t
+                LEFT JOIN status AS s ON (t.id_status = s.id)
+                WHERE t.id_status = :id_status';
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindValue(':id_status', $this->task->__get('id_status'));
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+  }
+
   public function update()
   {
     $query = ' UPDATE tasks

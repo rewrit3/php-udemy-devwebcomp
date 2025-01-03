@@ -16,6 +16,7 @@ if ($action == 'insert'):
   $taskService->create();
 
   header('Location: task_new.php?included=1');
+
 // recover
 elseif ($action == 'recover'):
   $connection = new Connection();
@@ -24,6 +25,17 @@ elseif ($action == 'recover'):
   $taskService = new TaskService($connection, $task);
 
   $tasks = $taskService->read();
+
+// recover (pending)
+elseif ($action == 'recoverPendingTasks'):
+  $connection = new Connection();
+
+  $task = new Task();
+  $task->__set('id_status', 1);
+  $taskService = new TaskService($connection, $task);
+
+  $tasks = $taskService->readPendingTasks();
+
 // update
 elseif ($action == 'update'):
   $task = new Task();
@@ -36,8 +48,13 @@ elseif ($action == 'update'):
   $taskService = new TaskService($connection, $task);
 
   if ($taskService->update()):
-    header('location: task_list.php');
+    if (isset($_GET['pag']) and $_GET['pag'] == 'index'):
+      header('location: index.php');
+    else:
+      header('location: task_list.php');
+    endif;
   endif;
+
 // remove
 elseif ($action == 'remove'):
   $task = new Task();
@@ -48,7 +65,12 @@ elseif ($action == 'remove'):
   $taskService = new TaskService($connection, $task);
   $taskService->remove();
 
-  header('location: task_list.php');
+  if (isset($_GET['pag']) and $_GET['pag'] == 'index'):
+    header('location: index.php');
+  else:
+    header('location: task_list.php');
+  endif;
+
 // done
 elseif ($action == 'done'):
   $task = new Task();
@@ -60,5 +82,9 @@ elseif ($action == 'done'):
   $taskService = new TaskService($connection, $task);
   $taskService->done();
 
-  header('location: task_list.php');
+  if (isset($_GET['pag']) and $_GET['pag'] == 'index'):
+    header('location: index.php');
+  else:
+    header('location: task_list.php');
+  endif;
 endif;
