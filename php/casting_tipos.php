@@ -29,6 +29,6 @@
     echo $valor3 . ': ' . gettype($valor3);
     // echo '<br>';
     // echo $valor4 . ': ' . gettype($valor4);
-    ?>
+  ?>
 </body>
 </html>
