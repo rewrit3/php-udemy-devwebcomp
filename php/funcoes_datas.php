@@ -18,9 +18,29 @@
 
     echo '<hr>';
 
-    $data_inicial = '2025-01-10';
+    // timestamp
+    // 01/01/1970
+
+    $data_inicial = '2025-01-01';
     $data_final = '2025-01-31';
-    // $time_inicial = str
+    $time_inicial = strtotime($data_inicial);
+    $time_final = strtotime($data_final);
+
+    echo $data_inicial . ' - ' . $time_inicial;
+    echo '<br>';
+    echo $data_final . ' - ' . $time_final;
+    echo '<br>';
+
+    $diferenca_times = $time_final - $time_inicial;
+    echo 'A diferença em segundos entre as datas é: ' . $diferenca_times;
+    echo '<br>';
+
+    $segundos_dia = 24 * 60 * 60;
+    echo 'Um dia possui ' . $segundos_dia . ' segundos.';
+    echo '<br>';
+
+    $diferenca_datas = $diferenca_times / $segundos_dia;
+    echo 'A diferença em dias entre as datas é: ' . $diferenca_datas;
   ?>
 </body>
 </html>
