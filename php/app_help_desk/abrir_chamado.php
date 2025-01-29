@@ -1,4 +1,4 @@
-<?php require_once('validar_acesso.php'); ?>
+<? require_once('validar_acesso.php'); ?>
 
 <html>
 
@@ -62,7 +62,7 @@
 
                   <div class="row mt-5">
                     <div class="col-6">
-                      <button class="btn btn-lg btn-warning btn-block" type="submit">Voltar</button>
+                      <a href="home.php" class="btn btn-lg btn-warning btn-block">Voltar</a>
                     </div>
 
                     <div class="col-6">

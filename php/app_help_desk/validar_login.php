@@ -18,7 +18,7 @@ endforeach;
 if ($isUserAuthenticated):
   $_SESSION['authenticated'] = 'SIM';
 
-  echo 'Usuário autenticado.';
+  header('Location: home.php');
 else:
   $_SESSION['authenticated'] = 'NAO';
 
