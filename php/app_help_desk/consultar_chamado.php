@@ -1,4 +1,19 @@
-<? require_once('validar_acesso.php'); ?>
+<?php
+
+require_once('validar_acesso.php');
+
+$tickets = [];
+
+$file = fopen('file.txt', 'r');
+
+while (!feof($file)):
+  $item = fgets($file);
+  $tickets[] = $item;
+endwhile;
+
+fclose($file);
+
+?>
 
 <html>
 
@@ -43,23 +58,21 @@
 
           <div class="card-body">
 
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
+            <? foreach ($tickets as $ticket):
+              $ticketExploded = explode('#', $ticket);
 
+              if (count($ticketExploded) < 3):
+                continue;
+              endif;
+            ?>
+              <div class="card mb-3 bg-light">
+                <div class="card-body">
+                  <h5 class="card-title"><?= $ticketExploded[0] ?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?= $ticketExploded[1] ?></h6>
+                  <p class="card-text"><?= $ticketExploded[2] ?></p>
+                </div>
               </div>
-            </div>
-
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
-
-              </div>
-            </div>
+            <? endforeach; ?>
 
             <div class="row mt-5">
               <div class="col-6">
