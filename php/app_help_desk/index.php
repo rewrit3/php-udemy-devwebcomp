@@ -41,9 +41,15 @@
                 <input name="senha" type="password" class="form-control" placeholder="Senha">
               </div>
 
-              <? if (isset($_GET['login']) and $_GET['login'] == 'error'): ?>
+              <? if (isset($_GET['login']) and $_GET['login'] == 'error1'): ?>
                 <div class="text-danger mb-2">
                   Usuário ou senha inválido(s).
+                </div>
+              <? endif; ?>
+
+              <? if (isset($_GET['login']) and $_GET['login'] == 'error2'): ?>
+                <div class="text-danger mb-2">
+                  Faça login antes de acessar a área restrita.
                 </div>
               <? endif; ?>
 

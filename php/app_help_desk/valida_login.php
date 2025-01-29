@@ -1,20 +1,8 @@
 <?php
 
-// print_r($_GET);
-// echo '<br>';
+session_start();
 
-// echo $_GET['email'];
-// echo '<br>';
-// echo $_GET['senha'];
-
-// print_r($_POST);
-// echo '<br>';
-
-// echo $_POST['email'];
-// echo '<br>';
-// echo $_POST['senha'];
-
-$user_auth = false;
+$isUserAuthenticated = false;
 
 $users = [
   ['email' => 'adm@teste.com.br', 'senha' => '123456'],
@@ -23,12 +11,16 @@ $users = [
 
 foreach ($users as $user):
   if ($user['email'] == $_POST['email'] and $user['senha'] == $_POST['senha']):
-    $user_auth = true;
+    $isUserAuthenticated = true;
   endif;
 endforeach;
 
-if ($user_auth):
+if ($isUserAuthenticated):
+  $_SESSION['authenticated'] = 'SIM';
+
   echo 'Usuário autenticado.';
 else:
-  header('Location: index.php?login=error');
+  $_SESSION['authenticated'] = 'NAO';
+
+  header('Location: index.php?login=error1');
 endif;
