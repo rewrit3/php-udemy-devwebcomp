@@ -1,3 +1,2 @@
-Mouse não clica#Hardware#Mouse não clica, não sei porque.
-Mouse não clica e teclado também não#Hardware#Mouse não clica, não sei porque, de verdade.
-Monitor não liga#Hardware#Monitor não liga.
+3#Mouse não clica (José)#Hardware#Mouse não clica não sei porque
+4#Mouse não clica e teclado também não (Maria)#Criação Usuário#Mouse não clica e teclado também não, não sei porque.

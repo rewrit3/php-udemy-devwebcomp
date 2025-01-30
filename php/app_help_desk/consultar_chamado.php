@@ -61,15 +61,21 @@ fclose($file);
             <? foreach ($tickets as $ticket):
               $ticketExploded = explode('#', $ticket);
 
+              if ($_SESSION['profile_id'] == 2):
+                if ($_SESSION['id'] != $ticketExploded[0]):
+                  continue;
+                endif;
+              endif;
+
               if (count($ticketExploded) < 3):
                 continue;
               endif;
             ?>
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title"><?= $ticketExploded[0] ?></h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?= $ticketExploded[1] ?></h6>
-                  <p class="card-text"><?= $ticketExploded[2] ?></p>
+                  <h5 class="card-title"><?= $ticketExploded[1] ?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?= $ticketExploded[2] ?></h6>
+                  <p class="card-text"><?= $ticketExploded[3] ?></p>
                 </div>
               </div>
             <? endforeach; ?>

@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
 $implode = implode("#", $_POST);
-$text = $implode . PHP_EOL;
+
+$title = str_replace('#', '-', $_POST['input_title']);
+$category = str_replace('#', '-', $_POST['input_category']);
+$description = str_replace('#', '-', $_POST['input_description']);
+
+$text = $_SESSION['id'] . '#' . $title . '#' . $category . '#' . $description . PHP_EOL;
 
 $file = fopen('file.txt', 'a');
 fwrite($file, $text);
