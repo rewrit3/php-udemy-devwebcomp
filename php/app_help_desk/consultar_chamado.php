@@ -8,7 +8,17 @@ $file = fopen('file.txt', 'r');
 
 while (!feof($file)):
   $item = fgets($file);
-  $tickets[] = $item;
+  $itemDetails = explode('#', $item);
+
+  if ($_SESSION['profile_id'] == 2):
+    if ($_SESSION['id'] != $itemDetails[0]):
+      continue;
+    else:
+      $tickets[] = $item;
+    endif;
+  else:
+    $tickets[] = $item;
+  endif;
 endwhile;
 
 fclose($file);
@@ -57,29 +67,22 @@ fclose($file);
           </div>
 
           <div class="card-body">
+            <?
+            foreach ($tickets as $ticket):
+              $ticketData = explode('#', $ticket);
 
-            <? foreach ($tickets as $ticket):
-              $ticketExploded = explode('#', $ticket);
-
-              if ($_SESSION['profile_id'] == 2):
-                if ($_SESSION['id'] != $ticketExploded[0]):
-                  continue;
-                endif;
-              endif;
-
-              if (count($ticketExploded) < 3):
+              if (count($ticketData) < 3):
                 continue;
               endif;
             ?>
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title"><?= $ticketExploded[1] ?></h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?= $ticketExploded[2] ?></h6>
-                  <p class="card-text"><?= $ticketExploded[3] ?></p>
+                  <h5 class="card-title"><?= $ticketData[1] ?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?= $ticketData[2] ?></h6>
+                  <p class="card-text"><?= $ticketData[3] ?></p>
                 </div>
               </div>
-            <? endforeach; ?>
-
+            <?php endforeach; ?>
             <div class="row mt-5">
               <div class="col-6">
                 <a href="home.php" class="btn btn-lg btn-warning btn-block">Voltar</a>

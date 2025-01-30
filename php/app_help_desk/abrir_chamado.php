@@ -43,8 +43,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-
-                <form action="registra_chamado.php" method="post">
+                <form action="registrar_chamado.php" method="post">
                   <div class="form-group">
                     <label>Título</label>
                     <input name="input_title" type="text" class="form-control" placeholder="Título">
@@ -76,7 +75,6 @@
                     </div>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>
