@@ -4,7 +4,7 @@ require_once('validar_acesso.php');
 
 $tickets = [];
 
-$file = fopen('file.txt', 'r');
+$file = fopen('../app_help_desk_privado/file.txt', 'r');
 
 while (!feof($file)):
   $item = fgets($file);

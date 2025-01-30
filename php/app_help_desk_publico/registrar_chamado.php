@@ -10,7 +10,7 @@ $description = str_replace('#', '-', $_POST['input_description']);
 
 $text = $_SESSION['id'] . '#' . $title . '#' . $category . '#' . $description . PHP_EOL;
 
-$file = fopen('file.txt', 'a');
+$file = fopen('../app_help_desk_privado/file.txt', 'a');
 fwrite($file, $text);
 fclose($file);
 
