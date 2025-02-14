@@ -6,35 +6,48 @@ class Funcionario {
     public $nome = null;
     public $telefone = null;
     public $numeroFilhos = null;
+    public $cargo = null;
+    public $salario = null;
 
-    // getters e setters
-    function setNome($nome) {
-        $this->nome = $nome;
+    // getters e setters (overloading)
+    function __set($atributo, $valor) {
+        $this->$atributo = $valor;
     }
 
-    function setTelefone($telefone) {
-        $this->telefone = $telefone;
+    function __get($atributo) {
+        return $this->$atributo;
     }
 
-    function setNumeroFilhos($numeroFilhos) {
-        $this->numeroFilhos = $numeroFilhos;
-    }
+    // function setNome($nome) {
+    //     $this->nome = $nome;
+    // }
 
-    function getNome() {
-        return $this->nome;
-    }
+    // function setTelefone($telefone) {
+    //     $this->telefone = $telefone;
+    // }
 
-    function getNumeroFilhos() {
-        return $this->numeroFilhos;
-    }
+    // function setNumeroFilhos($numeroFilhos) {
+    //     $this->numeroFilhos = $numeroFilhos;
+    // }
 
-    function getTelefone() {
-        return $this->telefone;
-    }
+    // function getNome() {
+    //     return $this->nome;
+    // }
+
+    // function getNumeroFilhos() {
+    //     return $this->numeroFilhos;
+    // }
+
+    // function getTelefone() {
+    //     return $this->telefone;
+    // }
 
     // métodos
     function resumirCadastroFuncionario() {
-        return "$this->nome possui $this->numeroFilhos filho(s). <br> Seu telefone é $this->telefone. <br>";
+        return "$this->nome possui $this->numeroFilhos filho(s). <br> 
+                Telefone: $this->telefone. <br>
+                Cargo: $this->cargo. <br>
+                Salário: $this->salario. <br>";
     }
 
     function modificarNumeroFilhos($numeroFilhos) {
@@ -56,16 +69,35 @@ class Funcionario {
 // $funcionario2->modificarNumeroFilhos(1);
 // echo $funcionario2->resumirCadastroFuncionario();
 
+// $funcionario1 = new Funcionario();
+// $funcionario1->setNome('Adolfo');
+// $funcionario1->setTelefone('(65) 9 9688-8989');
+// $funcionario1->setNumeroFilhos(2);
+// echo $funcionario1->resumirCadastroFuncionario();
+
+// echo '<hr>';
+
+// $funcionario2 = new Funcionario();
+// $funcionario2->setNome('Sheila');
+// $funcionario2->setTelefone('(66) 9 9999-9999');
+// $funcionario2->setNumeroFilhos(0);
+// echo $funcionario2->getNome() . ' possui ' . $funcionario2->getNumeroFilhos() . ' filho(s). <br> Seu telefone é ' . $funcionario2->getTelefone();
+
 $funcionario1 = new Funcionario();
-$funcionario1->setNome('Adolfo');
-$funcionario1->setTelefone('(65) 9 9688-8989');
-$funcionario1->setNumeroFilhos(2);
+$funcionario1->__set('nome', 'Adolfo');
+$funcionario1->__set('telefone', '(65) 9 9688-8989');
+$funcionario1->__set('numeroFilhos', 2);
+$funcionario1->__set('cargo', 'Programador');
+$funcionario1->__set('salario', 2000);
 echo $funcionario1->resumirCadastroFuncionario();
 
 echo '<hr>';
 
 $funcionario2 = new Funcionario();
-$funcionario2->setNome('Sheila');
-$funcionario2->setTelefone('(66) 9 9999-9999');
-$funcionario2->setNumeroFilhos(0);
-echo $funcionario2->getNome() . ' possui ' . $funcionario2->getNumeroFilhos() . ' filho(s). <br> Seu telefone é ' . $funcionario2->getTelefone();
+$funcionario2->__set('nome', 'Sheila');
+$funcionario2->__set('telefone', '(66) 9 9999-9999');
+$funcionario2->__set('numeroFilhos', 0);
+$funcionario2->__set('cargo', 'Farmacêutica');
+$funcionario2->__set('salario', 5000);
+// echo $funcionario1->resumirCadastroFuncionario();
+echo $funcionario2->__get('nome') . ' possui ' . $funcionario2->__get('numeroFilhos') . ' filho(s). <br> Seu telefone é ' . $funcionario2->__get('telefone');
