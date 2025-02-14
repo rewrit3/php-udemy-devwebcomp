@@ -3,3 +3,4 @@
 - Exercicio 006 ✅
 - Exercicio 007 ✅
 - Exercicio 008 ✅
+- Exercicio 009 ✅
