@@ -44,10 +44,11 @@ class Funcionario {
 
     // métodos
     function resumirCadastroFuncionario() {
-        return "$this->nome possui $this->numeroFilhos filho(s). <br> 
-                Telefone: $this->telefone. <br>
-                Cargo: $this->cargo. <br>
-                Salário: $this->salario. <br>";
+        return  'Nome: ' . $this->__get('nome') . '<br>' .
+            'Filhos: ' . $this->__get('numeroFilhos') . '<br>' .
+            'Telefone: ' . $this->__get('telefone') . '<br>' .
+            'Cargo: ' . $this->__get('cargo') . '<br>' .
+            'Salário: ' . $this->__get('salario');
     }
 
     function modificarNumeroFilhos($numeroFilhos) {
@@ -99,5 +100,5 @@ $funcionario2->__set('telefone', '(66) 9 9999-9999');
 $funcionario2->__set('numeroFilhos', 0);
 $funcionario2->__set('cargo', 'Farmacêutica');
 $funcionario2->__set('salario', 5000);
-// echo $funcionario1->resumirCadastroFuncionario();
-echo $funcionario2->__get('nome') . ' possui ' . $funcionario2->__get('numeroFilhos') . ' filho(s). <br> Seu telefone é ' . $funcionario2->__get('telefone');
+echo $funcionario2->resumirCadastroFuncionario();
+// echo $funcionario2->__get('nome') . ' possui ' . $funcionario2->__get('numeroFilhos') . ' filho(s). <br> Seu telefone é ' . $funcionario2->__get('telefone');
