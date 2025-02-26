@@ -10,3 +10,4 @@
 - Exercicio 013 ✅
 - Exercicio 014 ✅
 - Exercicio 015 ✅
+- Exercicio 016 ✅
