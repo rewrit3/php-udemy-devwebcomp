@@ -13,3 +13,6 @@
 - Exercicio 016 ✅
 - Exercicio 017 ✅
 - Exercicio 018 ✅
+
+# Estruturas de decisão
+- Exercicio 019 ✅
