@@ -12,3 +12,4 @@
 - Exercicio 015 ✅
 - Exercicio 016 ✅
 - Exercicio 017 ✅
+- Exercicio 018 ✅
