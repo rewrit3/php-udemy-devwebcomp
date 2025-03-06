@@ -17,3 +17,4 @@
 # Estruturas de decisão
 - Exercicio 019 ✅
 - Exercicio 020 ✅
+- Exercicio 021 ✅
