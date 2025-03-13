@@ -17,14 +17,62 @@
       ajax.onreadystatechange = () => {
         if (ajax.readyState == 4 && ajax.status == 200) {
           let moviesXML = ajax.responseText;
-          console.log(moviesXML);
 
           let parser = new DOMParser();
           moviesXMLParsed = parser.parseFromString(moviesXML, 'text/xml');
-          console.log(moviesXMLParsed);
 
           moviesJSON = xmlToJson(moviesXMLParsed);
-          console.log(moviesJSON);
+
+          for (let i in moviesJSON['filmes']['filme']) {
+            item = moviesJSON['filmes']['filme'][i];
+
+            genero = '';
+            for (let g in item.genero) {
+              if (genero) genero += ', ';
+
+              genero += item.genero[g]['#text'];
+            }
+
+            elenco = '';
+            for (let e in item.elenco.ator) {
+              if (elenco) elenco += ', ';
+
+              elenco += item.elenco.ator[e]['#text'];
+            }
+
+            let divRow = document.createElement('div');
+            divRow.className = 'row';
+
+            let divCol = document.createElement('div');
+            divRow.className = 'col';
+
+            let p1 = document.createElement('p');
+            p1.innerHTML = '<strong>Título:</strong> ' + item.titulo['#text'];
+
+            let p2 = document.createElement('p');
+            p2.innerHTML = '<strong>Resumo:</strong> ' + item.resumo['#text'];
+
+            let p3 = document.createElement('p');
+            p3.innerHTML = '<strong>Gênero:</strong> ' + genero;
+
+            let p4 = document.createElement('p');
+            p4.innerHTML = '<strong>Elenco:</strong> ' + elenco;
+
+            let p5 = document.createElement('p');
+            p5.innerHTML = '<strong>Data de Lançamento:</strong> ' + item.dataLancamento['#text'] + ' (' + item.dataLancamento['@attributes']['pais'] + ')';
+
+            let hr = document.createElement('hr');
+
+            divRow.appendChild(divCol);
+            divCol.appendChild(p1);
+            divCol.appendChild(p2);
+            divCol.appendChild(p3);
+            divCol.appendChild(p4);
+            divCol.appendChild(p5);
+            divCol.appendChild(hr);
+
+            document.getElementById('list').appendChild(divRow);
+          }
         }
 
         if (ajax.readyState == 4 && ajax.status == 404) {
@@ -46,8 +94,8 @@
     </div>
   </nav>
 
-  <div class="container">
-    <div class="row">
+  <div class="container" id="list">
+    <div class="row mb-4">
       <div class="col">
         <button class="btn btn-success" type="button" onclick="getMovies()">Listar filmes</button>
       </div>

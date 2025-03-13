@@ -20,9 +20,9 @@
         <genero>Suspense</genero>
         <elenco>
             <ator>Noomi Rapace</ator>
-            <ator>GLENN CLOSE</ator>
-            <ator>WILLEM DAFOE</ator>
+            <ator>Glenn Close</ator>
+            <ator>Willem Dafoe</ator>
         </elenco>
-        <dataLancamento pais='Franca'>30 de agosto de 2017</dataLancamento>
+        <dataLancamento pais='França'>30 de agosto de 2017</dataLancamento>
     </filme>
 </filmes>
