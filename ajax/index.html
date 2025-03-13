@@ -9,6 +9,15 @@
 
   <script>
     function requestPage(url) {
+      if (!document.getElementById('image-loading')) {
+        let imageLoading = document.createElement('img');
+        imageLoading.id = 'image-loading';
+        imageLoading.src = 'loading.gif';
+        imageLoading.className = 'd-block mx-auto rounded';
+
+        document.getElementById('content').appendChild(imageLoading);
+      }
+
       let ajax = new XMLHttpRequest();
 
       // state
@@ -21,14 +30,17 @@
 
       ajax.onreadystatechange = () => {
         console.log(ajax.readyState);
+
+        if (ajax.readyState == 4) {
+          document.getElementById('image-loading').remove();
+        }
       }
+
+      ajax.send();
 
       // 2: request received
       // 3: processing request
       // 4: request finished and response is ready
-
-      ajax.send();
-      // console.log(ajax);
     }
   </script>
 </head>
@@ -46,7 +58,7 @@
     <div class="row mb-2">
       <div class="col-md-4 center"></div>
       <div class="col-md-4 center">
-        <a href="#" class="btn btn-primary" onclick="requestPage('pagina_1_conteudo.html')">Página 1</a>
+        <a href="#" class="btn btn-primary" onclick="requestPage('pagina_1_conteudo.php')">Página 1</a>
         <a href="#" class="btn btn-primary" onclick="requestPage('pagina_2_conteudo.html')">Página 2</a>
         <a href="#" class="btn btn-primary" onclick="requestPage('pagina_3_conteudo.html')">Página 3</a>
       </div>
@@ -55,10 +67,7 @@
 
     <div class="row">
       <div class="col-md-1"></div>
-
-      <div class="col-md-10">
-      </div>
-
+      <div class="col-md-10" id="content"></div>
       <div class="col-md-1"></div>
     </div>
   </div>
