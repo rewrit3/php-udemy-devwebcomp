@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Catálogo de Filmes</title>
+
+  <script>
+    function getMovies() {
+      let ajax = new XMLHttpRequest();
+      ajax.open('GET', 'http://php-udemy-devwebcomp.lvh.me/ajax/filmes.xml');
+
+      ajax.onreadystatechange = () => {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          let XMLMovies = ajax.responseText;
+
+          console.log(XMLMovies);
+        }
+
+        if (ajax.readyState == 4 && ajax.status == 404) {
+          // ...
+        }
+      }
+
+      ajax.send();
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light mb-4">
+    <div class="container">
+      <div class="navbar-brand mb-0 h1">
+        <h3>Catálogo de Filmes</h3>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-success" type="button" onclick="getMovies()">Listar filmes</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
