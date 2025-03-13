@@ -8,6 +8,7 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <title>Catálogo de Filmes</title>
 
+  <script src="xmltojson.js" type="text/javascript"></script>
   <script>
     function getMovies() {
       let ajax = new XMLHttpRequest();
@@ -15,9 +16,15 @@
 
       ajax.onreadystatechange = () => {
         if (ajax.readyState == 4 && ajax.status == 200) {
-          let XMLMovies = ajax.responseText;
+          let moviesXML = ajax.responseText;
+          console.log(moviesXML);
 
-          console.log(XMLMovies);
+          let parser = new DOMParser();
+          moviesXMLParsed = parser.parseFromString(moviesXML, 'text/xml');
+          console.log(moviesXMLParsed);
+
+          moviesJSON = xmlToJson(moviesXMLParsed);
+          console.log(moviesJSON);
         }
 
         if (ajax.readyState == 4 && ajax.status == 404) {
