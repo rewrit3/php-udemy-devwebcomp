@@ -24,3 +24,6 @@
 - Exercicio 025 ✅
 - Exercicio 026 ✅
 - Exercicio 027 ✅
+- Exercicio 028 ✅
+- Exercicio 029 ✅
+- Exercicio 030 ✅
