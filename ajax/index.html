@@ -11,10 +11,24 @@
     function requestPage(url) {
       let ajax = new XMLHttpRequest();
 
-      ajax.open('GET', url);
-      ajax.send();
+      // state
+      // 0: request not initialized
+      console.log(ajax.readyState);
 
-      console.log(ajax);
+      // 1: server connection established
+      ajax.open('GET', url);
+      console.log(ajax.readyState);
+
+      ajax.onreadystatechange = () => {
+        console.log(ajax.readyState);
+      }
+
+      // 2: request received
+      // 3: processing request
+      // 4: request finished and response is ready
+
+      ajax.send();
+      // console.log(ajax);
     }
   </script>
 </head>
