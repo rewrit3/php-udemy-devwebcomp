@@ -79,10 +79,19 @@ class Service {
 $connection = new Connection();
 $dashboard = new Dashboard();
 
-$dashboard->__set('startDate', '2018-08-01');
-$dashboard->__set('endDate', '2018-08-31');
+$competency = explode('-', $_GET['competencia']);
+$year = $competency[0];
+$month = $competency[1];
+$daysOfTheMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+$dashboard->__set('startDate', $year . '-' . $month . '-01');
+$dashboard->__set('endDate', $year . '-' . $month . '-' . $daysOfTheMonth);
 
 $service = new Service($connection, $dashboard);
 
 $dashboard->__set('numberSales', $service->getNumberSales());
 $dashboard->__set('totalSales', $service->getTotalSales());
+
+// echo '<pre>';
+echo json_encode($dashboard);
+// echo '</pre>';
