@@ -28,6 +28,10 @@ $(document).ready(() => {
       success: data => {
         $('#numero_vendas').html(data.numberSales);
         $('#total_vendas').html(data.totalSales);
+        $('#clientes_ativos').html(data.activeClients);
+        $('#clientes_inativos').html(data.inactiveClients);
+
+        console.log(data);
       },
       error: error => {
         console.log(error);

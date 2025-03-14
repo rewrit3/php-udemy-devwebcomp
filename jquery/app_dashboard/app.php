@@ -5,6 +5,8 @@ class Dashboard {
   public $endDate;
   public $numberSales;
   public $totalSales;
+  public $activeClients;
+  public $inactiveClients;
 
   public function __get($attribute) {
     return $this->$attribute;
@@ -50,7 +52,7 @@ class Service {
   }
 
   public function getNumberSales() {
-    $query = 'SELECT COUNT(*) as numero_vendas 
+    $query = 'SELECT COUNT(*) AS numero_vendas 
               FROM tb_vendas 
               WHERE data_venda BETWEEN :data_inicio AND :data_fim';
 
@@ -63,7 +65,7 @@ class Service {
   }
 
   public function getTotalSales() {
-    $query = 'SELECT SUM(total) as total_vendas 
+    $query = 'SELECT SUM(total) AS total_vendas 
               FROM tb_vendas 
               WHERE data_venda BETWEEN :data_inicio AND :data_fim';
 
@@ -73,6 +75,28 @@ class Service {
     $stmt->execute();
 
     return $stmt->fetch(PDO::FETCH_OBJ)->total_vendas;
+  }
+
+  public function getActiveClients() {
+    $query = 'SELECT COUNT(*) AS clientes_ativos
+              FROM tb_clientes tc 
+              WHERE tc.cliente_ativo = 1';
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_OBJ)->clientes_ativos;
+  }
+
+  public function getInactiveClients() {
+    $query = 'SELECT COUNT(*) AS clientes_inativos
+              FROM tb_clientes tc 
+              WHERE tc.cliente_ativo = 0';
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_OBJ)->clientes_inativos;
   }
 }
 
@@ -91,7 +115,7 @@ $service = new Service($connection, $dashboard);
 
 $dashboard->__set('numberSales', $service->getNumberSales());
 $dashboard->__set('totalSales', $service->getTotalSales());
+$dashboard->__set('activeClients', $service->getActiveClients());
+$dashboard->__set('inactiveClients', $service->getInactiveClients());
 
-// echo '<pre>';
 echo json_encode($dashboard);
-// echo '</pre>';
