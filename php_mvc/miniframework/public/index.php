@@ -1,1 +1,1 @@
-<?php echo 'OK';
+<?php require_once('../vendor/autoload.php');
