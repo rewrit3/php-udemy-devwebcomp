@@ -34,16 +34,26 @@ if (isset($_POST['valor_hora']) and isset($_POST['quantidade_horas'])):
 
   $salarioBruto = $valorHora * $quantidadeHoras;
 
-  $descontoINSS = 1.10;
-  $descontoFGTS = 1.11;
+  $descontoINSS = 10;
+  $descontoFGTS = 11;
 
   if ($salarioBruto <= '900'):
     $descontoIR = 0;
-    $percentualIR = 0;
-  elseif ($salarioBruto > '900' and $salarioBruto <= '1500'):
+  elseif ($salarioBruto >= '900' and $salarioBruto < '1500'):
     $descontoIR = 5;
-    $percentualIR = 1.05;
+  elseif ($salarioBruto >= '1500' and $salarioBruto <= '2500'):
+    $descontoIR = 10;
+  elseif ($salarioBruto > '2500'):
+    $descontoIR = 20;
   endif;
+
+  $valorDescontoIR = ($salarioBruto * $descontoIR) / 100;
+  $valorDescontoINSS = ($salarioBruto * $descontoINSS) / 100;
+  $valorDescontoFGTS = ($salarioBruto * $descontoFGTS) / 100;
+
+  $salarioLiquidoDescontoIR = $salarioBruto - $valorDescontoIR;
+  $salarioLiquidoDescontoINSS = $salarioBruto - $valorDescontoINSS;
+  $salarioLiquidoDescontoFGTS = $salarioBruto - $valorDescontoFGTS;
 endif;
 
 ?>
@@ -51,7 +61,7 @@ endif;
 <form action="http://php-udemy-devwebcomp.lvh.me/php/exercicios/logica/isquicha/exercicio_030.php" method="post">
   <label for="valor_hora">Valor por hora</label>
   <br>
-  <input type="number" name="valor_hora" id="valor_hora" placeholder="Digite o valor por hora" style="width: 250px;">
+  <input type="text" name="valor_hora" id="valor_hora" placeholder="Digite o valor por hora" style="width: 250px;">
 
   <br>
   <br>
@@ -71,6 +81,7 @@ endif;
 <?php
 if (isset($_POST['valor_hora']) and isset($_POST['quantidade_horas'])):
   echo "Salário Bruto ($valorHora * $quantidadeHoras): R$  " . number_format($salarioBruto, 2, ',', '.') . "<br>";
-  echo "(-) IR ($descontoIR %): R$  " . number_format($salarioBruto, 2, ',', '.') . "<br>";
+  echo "(-) IR ($descontoIR %): R$  " . number_format($salarioLiquidoDescontoIR, 2, ',', '.') . "<br>";
+  echo "(-) INSS ($descontoINSS %): R$  " . number_format($salarioLiquidoDescontoINSS, 2, ',', '.') . "<br>";
 endif;
 ?>
