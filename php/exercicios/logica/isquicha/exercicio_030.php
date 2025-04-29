@@ -1,5 +1,4 @@
 <?php
-
 // Estruturas de decisão
 // Exercicio 030
 /* 
@@ -51,28 +50,22 @@ if (isset($_POST['valor_hora']) and isset($_POST['quantidade_horas'])):
   $valorDescontoINSS = ($salarioBruto * $descontoINSS) / 100;
   $valorDescontoFGTS = ($salarioBruto * $descontoFGTS) / 100;
 
-  $salarioLiquidoDescontoIR = $salarioBruto - $valorDescontoIR;
-  $salarioLiquidoDescontoINSS = $salarioBruto - $valorDescontoINSS;
-  $salarioLiquidoDescontoFGTS = $salarioBruto - $valorDescontoFGTS;
+  $totalDescontos = $valorDescontoIR + $valorDescontoINSS;
+  $salarioLiquido = $salarioBruto - $totalDescontos;
 endif;
-
 ?>
 
 <form action="http://php-udemy-devwebcomp.lvh.me/php/exercicios/logica/isquicha/exercicio_030.php" method="post">
-  <label for="valor_hora">Valor por hora</label>
+  <label for="valor_hora">Valor por hora:</label>
   <br>
   <input type="text" name="valor_hora" id="valor_hora" placeholder="Digite o valor por hora" style="width: 250px;">
-
   <br>
   <br>
-
-  <label for="quantidade_horas">Quantidade de horas</label>
+  <label for="quantidade_horas">Quantidade de horas:</label>
   <br>
   <input type="number" name="quantidade_horas" id="quantidade_horas" placeholder="Digite a quantidade de horas" style="width: 250px;">
-
   <br>
   <br>
-
   <button type="submit">Enviar</button>
 </form>
 
@@ -80,8 +73,12 @@ endif;
 
 <?php
 if (isset($_POST['valor_hora']) and isset($_POST['quantidade_horas'])):
-  echo "Salário Bruto ($valorHora * $quantidadeHoras): R$  " . number_format($salarioBruto, 2, ',', '.') . "<br>";
-  echo "(-) IR ($descontoIR %): R$  " . number_format($salarioLiquidoDescontoIR, 2, ',', '.') . "<br>";
-  echo "(-) INSS ($descontoINSS %): R$  " . number_format($salarioLiquidoDescontoINSS, 2, ',', '.') . "<br>";
+  echo "Salário Bruto ($valorHora * $quantidadeHoras): R$ " . number_format($salarioBruto, 2, ',', '.') . "<br>";
+  echo "(-) IR ($descontoIR %): R$" . number_format($valorDescontoIR, 2, ',', '.') . "<br>";
+  echo "(-) INSS ($descontoINSS %): R$  " . number_format($valorDescontoINSS, 2, ',', '.') . "<br>";
+  echo "FGTS ($descontoFGTS %): R$  " . number_format($valorDescontoFGTS, 2, ',', '.') . "<br>";
+  echo "Total de descontos: R$ " . number_format($totalDescontos, 2, ',', '.') . "<br>";
+  echo "<hr>";
+  echo "Salário líquido: R$ " . number_format($salarioLiquido, 2, ',', '.') . "<br>";
 endif;
 ?>
