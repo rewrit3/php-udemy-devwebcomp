@@ -115,3 +115,37 @@ $secondElement = getArray()[1];
 var_dump($secondElement); */
 
 // Criando/modificando com a sintaxe de colchetes
+/* $arr = [
+  5 => 1,
+  12 => 2
+];
+
+$arr[] = 56;
+
+unset($arr[12]);
+
+print_r($arr);
+
+unset($arr);
+
+print_r($arr); */
+
+$arr = [1, 2, 3, 4, 5];
+print_r($arr);
+
+foreach ($arr as $i => $value) {
+  unset($arr[$i]);
+}
+
+print_r($arr);
+
+$arr[] = 6;
+
+print_r($arr);
+
+$arr = array_values($arr);
+$arr[] = 7;
+
+print_r($arr);
+
+// Desconstruindo arrays
