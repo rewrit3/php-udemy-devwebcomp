@@ -12,22 +12,35 @@
   Testar com:
   326, 300, 100, 320, 310,305, 301, 101, 311, 111, 25, 20, 10, 21, 11, 1, 7 e 16
 */
-if (isset($_POST['number'])):
-  $number = $_POST['number'];
-
-  if ($number % 100 === 0):
-    $result = $number / 100;
-  else:
-    $modulo = $number % 100;
-    $numero = $number - $modulo;
-    $result = $numero;
+function decomposeNumber($number) {
+  if (!is_int($number) or $number <= 0  or $number >= 1000):
+    return 'Número inválido. Por favor, digite um número inteiro entre 1 e 999.';
   endif;
 
-  $message = "$number = $result centenas";
+  $hundreds = intdiv($number, 100);
+  $hundredsRest = $number % 100;
+  $tens = intdiv($hundredsRest, 10);
+  $units = $hundredsRest % 10;
+
+  return [
+    'hundreds' => $hundreds,
+    'tens' => $tens,
+    'units' => $units,
+  ];
+}
+
+if (isset($_POST['number'])):
+  $typedNumber = trim($_POST['number']);
+  $typedNumber = (int) $typedNumber;
+
+  $result = decomposeNumber($typedNumber);
 endif;
 ?>
 
-<form action="http://php-udemy-devwebcomp.lvh.me/php/exercicios/logica/isquicha/exercicio_037.php" method="post">
+<form
+  action="http://php-udemy-devwebcomp.lvh.me/php/exercicios/logica/isquicha/exercicio_037.php"
+  method="post">
+
   <label for="number">Digite o número:</label>
   <br>
   <input
@@ -37,8 +50,10 @@ endif;
     placeholder="Digite o número"
     style="width: 250px;"
     required>
+
   <br>
   <br>
+
   <button type="submit">Enviar</button>
 </form>
 
@@ -46,6 +61,13 @@ endif;
 
 <?php
 if (isset($_POST['number'])):
-  echo $message;
+  if (is_array($result)):
+    echo "O número $typedNumber possui:\n";
+    echo $result['hundreds'] . " centenas,\n";
+    echo $result['tens'] . " dezenas, e\n";
+    echo $result['units'] . " unidades.\n";
+  else:
+    echo $result . "\n";
+  endif;
 endif;
 ?>
