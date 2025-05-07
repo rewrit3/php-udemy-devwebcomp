@@ -207,3 +207,133 @@ echo $a, PHP_EOL;
 echo $b, PHP_EOL; */
 
 // Funções úteis
+// Exemplo #16 Eliminando elementos intermediários
+/* $a = [
+  1 => 'um',
+  2 => 'dois',
+  3 => 'três',
+];
+
+print_r($a);
+unset($a[2]);
+print_r($a);
+
+$b = array_values($a);
+print_r($b); */
+
+// Array: o que fazer e o que não fazer
+// Exemplo #17 Delimitando chaves
+/* error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('html_errors', false);
+
+$arr = [1, 2];
+$count = count($arr);
+
+for ($i = 0; $i < $count; $i++):
+  echo "\nVerificando $i: \n";
+  echo "Ruim: " . $arr['$i'] . "\n";
+  echo "Bom: " . $arr[$i] . "\n";
+  echo "Ruim: {$arr['$i']}\n";
+  echo "Bom: {$arr[$i]}\n";
+endfor; */
+
+// Exemplo #18 Mais exemplos
+// Mostrando todos os erros
+/* error_reporting(E_ALL);
+
+$arr = array('fruta' => 'maçã', 'legume' => 'cenoura');
+
+// Correto
+echo $arr['fruta'], PHP_EOL;  // maçã
+echo $arr['legume'], PHP_EOL; // cenoura
+
+// Errado. Isto funciona mas lança um erro PHP porque
+// é utilizada uma constante indefinida (fruta)
+//
+// Error: Undefined constant "fruta"
+try {
+  echo $arr[fruta];    // maçã
+} catch (Error $e) {
+  echo get_class($e), ': ', $e->getMessage(), PHP_EOL;
+}
+
+// Esta instrução define uma constante para demonstrar o que acontece. O valor 'legume'
+// é atribuído a uma constante denominada 'fruta'
+define('fruta', 'legume');
+
+// Observe a diferença agora
+echo $arr['fruta'], PHP_EOL;  // maçã
+echo $arr[fruta], PHP_EOL;    // cenoura
+
+// O exemplo seguinte está ok, já que está dentro de uma string. Constantes não são
+// observadas dentro de strings e por isso nenhum E_NOTICE acontece aqui
+echo "Olá $arr[fruta]", PHP_EOL;      // Olá maçã
+
+// Com uma exceção: chaves envolvendo arrays dentro de strings
+// ativam a checagem de constantes, como em
+echo "Olá {$arr[fruta]}", PHP_EOL;    // Olá cenoura
+echo "Olá {$arr['fruta']}", PHP_EOL;  // Olá maçã
+
+// Concatenação é uma outra oppção
+echo "Olá " . $arr['fruta'], PHP_EOL; // Olá maçã */
+
+// Convertendo para array
+// Exemplo #19 Convertendo para um array
+/* class A {
+  private $B;
+  protected $C;
+  public $D;
+
+  function __construct() {
+    $this->{1} = null;
+  }
+}
+
+var_export((array) new A()); */
+
+// Exemplo #20 Convertendo um objeto em um Array
+/* class A {
+  private $A;
+}
+
+class B extends A {
+  private $A;
+  public $AA;
+}
+
+var_dump((array) new B()); */
+
+// Exemplo #21 Expansão de arrays
+/* $arr1 = [1, 2, 3];
+$arr2 = [...$arr1];
+$arr3 = [0, ...$arr1];
+$arr4 = [...$arr1, ...$arr2, 111];
+$arr5 = [...$arr1, ...$arr1];
+
+function getArr() {
+  return ['a', 'b'];
+}
+
+$arr6 = [...getArr(), 'c' => 'd'];
+
+var_dump($arr1, $arr2, $arr3, $arr4, $arr5, $arr6); */
+
+// Exemplo #22 Expansão de arrays com chaves duplicadas
+// string key
+/* $arr1 = ['a' => 1];
+$arr2 = ['a' => 2];
+$arr3 = ['a' => 0, ...$arr1, ...$arr2];
+
+print_r($arr3);
+
+// integer key
+$arr4 = [1, 2, 3];
+$arr5 = [4, 5, 6];
+$arr6 = [...$arr4, ...$arr5];
+
+print_r($arr6);
+ */
+
+// Exemplos
+// Exemplo #23 Versatilidade do array
