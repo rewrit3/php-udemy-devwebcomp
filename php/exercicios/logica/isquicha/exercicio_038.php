@@ -31,16 +31,17 @@ function decomposeValue($value) {
   $fifty = intdiv($hundredRest, 50);
   $fiftyRest = $hundredRest % 50;
   $ten = intdiv($fiftyRest, 10);
-  // $ten = $hundredsRest % 10;
-  // $units = $hundredsRest % 10;
-  echo $fiftyRest;
-  exit;
+  $tenRest = $hundredRest % 10;
+  $five = intdiv($tenRest, 5);
+  $fiveRest = $hundredRest % 5;
+  $one = intdiv($fiveRest, 1);
 
   return [
     'hundred' => $hundred,
     'fifty' => $fifty,
     'ten' => $ten,
-    // 'units' => $units,
+    'five' => $five,
+    'one' => $one,
   ];
 }
 
@@ -75,10 +76,11 @@ endif;
 
 <?php
 if (isset($_POST['value'])):
-  echo "O valor R$ $typedValue irá fornecer:\n";
-  echo $result['hundred'] . " notas de 100,\n";
-  echo $result['fifty'] . " notas de 50,\n";
-  echo $result['ten'] . " notas de 10,\n";
-// echo $result['units'] . " unidades.\n";
+  echo "O valor R$ $typedValue irá fornecer: <br>";
+  echo $result['hundred'] . " nota(s) de 100 <br>";
+  echo $result['fifty'] . " nota(s) de 50 <br>";
+  echo $result['ten'] . " nota(s) de 10 <br>";
+  echo $result['five'] . " nota(s) de 5 <br>";
+  echo $result['one'] . " nota(s) de 1 <br>";
 endif;
 ?>
