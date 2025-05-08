@@ -6,7 +6,6 @@
   Mostre uma mensagem caso o valor seja inválido e continue pedindo 
   até que o usuário informe um valor válido.
 */
-// Solicita a nota ao usuário
 echo 'Digite uma nota entre 0 e 10: ';
 $grade = trim(fgets(STDIN));
 
