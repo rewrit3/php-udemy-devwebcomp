@@ -337,3 +337,102 @@ print_r($arr6);
 
 // Exemplos
 // Exemplo #23 Versatilidade do array
+/* $a = [
+  'color' => 'red',
+  'taste' => 'sweet',
+  'shape' => 'round',
+  'name' => 'apple',
+  4
+];
+
+$b = ['a', 'b', 'c'];
+
+var_dump($a, $b);
+
+$a = array();
+$a['color'] = 'red';
+$a['taste'] = 'sweet';
+$a['shape'] = 'round';
+$a['name'] = 'apple';
+$a[] = 4;
+
+$b = array();
+$b[] = 'a';
+$b[] = 'b';
+$b[] = 'c';
+
+var_dump($a, $b); */
+
+// Exemplo #24 Utilizando array()
+/* $map = [
+  'versao' => 4,
+  'OS' => 'Linux',
+  'lang' => 'inglês',
+  'short_tags' => true,
+];
+
+print_r($map);
+
+$array = [
+  7,
+  8,
+  0,
+  156,
+  -10
+];
+
+print_r($array);
+
+$switching = [
+  10,
+  5 => 6,
+  3 => 7,
+  'a' => 4,
+  11,
+  '8' => 2,
+  '02' => 77,
+  0 => 12
+];
+
+print_r($switching);
+
+$empty = [];
+var_dump($empty); */
+
+// Exemplo #25 Coleção
+/* $cores = [
+  'vermelho',
+  'azul',
+  'verde',
+  'amarelo',
+];
+
+foreach ($cores as $cor):
+  echo "Você gosta de $cor?\n";
+endforeach; */
+
+// Exemplo #26 Alterando valores em um laço
+// É possível alterar diretamente os valores de um array passando-os como referência.
+/* $cores = [
+  'vermelho',
+  'azul',
+  'verde',
+  'amarelo',
+];
+
+foreach ($cores as &$cor):
+  $cor = mb_strtoupper($cor);
+endforeach;
+
+unset($cor);
+
+print_r($cores); */
+
+// Exemplo #27 Array baseado em 1
+$primeiroQuarto = [
+  1 => 'Janeiro',
+  'Fevereiro',
+  'Março'
+];
+
+print_r($primeiroQuarto);
