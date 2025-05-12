@@ -429,10 +429,66 @@ unset($cor);
 print_r($cores); */
 
 // Exemplo #27 Array baseado em 1
-$primeiroQuarto = [
+/* $primeiroQuarto = [
   1 => 'Janeiro',
   'Fevereiro',
   'Março'
 ];
 
-print_r($primeiroQuarto);
+print_r($primeiroQuarto); */
+
+// Exemplo #28 Preenchendo um array
+// $handle = opendir('.');
+
+// while (false !== ($file = readdir($handle))):
+//   $files[] = $file;
+// endwhile;
+
+// closedir($handle);
+
+// print_r($files);
+
+// Exemplo #29 Ordenando arrays
+// sort($files);
+// print_r($files);
+
+// Exemplo #30 Arrays recursivos e multidimensionais
+/* $fruits = [
+  'frutas' => [
+    'a' => 'laranja',
+    'b' => 'banana',
+    'c' => 'maçã',
+  ],
+  'numeros' => [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  'buracos' => [
+    'primeiro',
+    5 => 'segundo',
+    'terceiro',
+  ]
+];
+
+print_r($fruits);
+
+// echo $fruits['buracos'][5];
+// echo $fruits['frutas']['a'];
+// unset($fruits['buracos'][0]);
+
+$juices['maca']['verde'] = 'bom';
+print_r($juices); */
+
+// Exemplo #31 Copiando arrays
+$arr1 = [2, 3];
+$arr2 = $arr1;
+$arr2[] = 4;
+
+$arr3 = &$arr1;
+$arr3[] = 4;
+
+var_dump($arr1, $arr2, $arr3);
